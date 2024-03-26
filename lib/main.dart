@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
                       color: Colors.black54,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Stack(
                     children: [
                       Image.asset(
@@ -41,7 +41,7 @@ class MainApp extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(

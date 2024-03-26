@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer';
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
+import 'dart:developer';
+import 'package:notes_app/addnotepage.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = 'home_page';
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   /// widget list
   final List<Widget> bottomBarPages = [
-    General(),
+    const General(),
     const Favorite(),
   ];
 
@@ -35,8 +36,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple[100],
-        iconTheme:
-            IconThemeData(color: Colors.deepPurple[400]), // Set icon color here
+        iconTheme: IconThemeData(color: Colors.deepPurple[400]),
         title: Row(
           children: [
             Text(
@@ -120,36 +120,59 @@ class General extends StatefulWidget {
 }
 
 class _GeneralState extends State<General> {
-  List<Widget> cards = [];
-  // List to hold cards
-
-  @override
-  void initState() {
-    super.initState();
-    cards.add(
-      Card(
-        elevation: 0,
-        color: Colors.deepPurple.shade50,
-        margin: EdgeInsets.all(16.0),
-        child: Padding(
-          padding: const EdgeInsets.all(50.0),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.add,
-            ),
-            color: Colors.deepPurple[400],
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 2, // Number of columns in the grid
-      children: cards, // Display cards from the list
+      children: [
+        CardItem(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AnotherPage(),
+              ),
+            );
+          },
+        ),
+      ], // Display cards from the list
+    );
+  }
+}
+
+class CardItem extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const CardItem({Key? key, required this.onPressed}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 0,
+      color: Colors.deepPurple.shade50,
+      margin: const EdgeInsets.all(16.0),
+      child: InkWell(
+        onTap: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.all(50.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.add,
+                color: Colors.deepPurple[400],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Add Note',
+                style: TextStyle(
+                  color: Colors.deepPurple[400],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -160,6 +183,8 @@ class Favorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.white, child: const Center(child: Text('Favorite')));
+      color: Colors.white,
+      child: const Center(child: Text('Favorite')),
+    );
   }
 }
