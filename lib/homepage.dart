@@ -130,7 +130,7 @@ class _GeneralState extends State<General> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AnotherPage(),
+                builder: (context) => const AnotherPage(),
               ),
             );
           },

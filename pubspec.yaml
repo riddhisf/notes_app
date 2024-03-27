@@ -15,7 +15,7 @@ dependencies:
   provider: ^6.1.2
   animated_floating_buttons: ^0.0.2
   image_picker: ^1.0.7
-  flutter_colorpicker: ^1.0.3
+  circular_menu: ^2.0.1
   
 
 dev_dependencies:
